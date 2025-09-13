@@ -1,8 +1,8 @@
 - type: reaction
   id: N14Gunpowder
-  impact: Low
-  quantized: true
-  conserveEnergy: false
+  impact: Low # Forge-Add
+  quantized: true # Forge-Add
+  conserveEnergy: false # Forge-Add
   reactants:
     Sulfur:
       amount: 1
@@ -29,9 +29,9 @@
 - type: reaction
   id: Composting
   source: true # breakdown of existing resource
-  impact: Low
-  quantized: true
-  conserveEnergy: false
+  impact: Low # Forge-Add
+  quantized: true # Forge-Add
+  conserveEnergy: false # Forge-Add
   reactants:
     Dung:
       amount: 10
