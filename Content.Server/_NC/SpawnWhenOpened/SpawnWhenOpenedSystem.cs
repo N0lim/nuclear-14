@@ -1,14 +1,15 @@
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Storage;
 using Robust.Shared.Random;
-using Content.Shared.Coordinates;
 using Content.Shared._NC.SpawnWhenOpened;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Server._NC.SpawnWhenOpened;
 
 public sealed partial class SpawnWhenOpenedSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -23,7 +24,13 @@ public sealed partial class SpawnWhenOpenedSystem : EntitySystem
         comp.IsAlreadyOpened = true;
         foreach (var ent in EntitySpawnCollection.GetSpawns(comp.Prototypes, _random))
         {
-            Spawn(ent, uid.ToCoordinates());
+            var item = SpawnNextToOrDrop(ent, uid);
+
+            if (args.User != null)
+            {
+                var user = args.User ?? default;
+                _hands.TryPickupAnyHand(user, item);
+            }
         }
     }
 }
