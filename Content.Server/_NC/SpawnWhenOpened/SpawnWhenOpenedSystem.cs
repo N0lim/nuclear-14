@@ -2,8 +2,9 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Storage;
 using Robust.Shared.Random;
 using Content.Shared.Coordinates;
+using Content.Shared._NC.SpawnWhenOpened;
 
-namespace Content.Shared._NC.SpawnWhenOpened;
+namespace Content.Server._NC.SpawnWhenOpened;
 
 public sealed partial class SpawnWhenOpenedSystem : EntitySystem
 {
